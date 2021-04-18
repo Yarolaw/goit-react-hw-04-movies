@@ -27,6 +27,7 @@ class MovieDetailsPage extends Component {
 
     this.setState({ ...response.data });
   }
+
   handleGoBack = () => {
     const { location, history } = this.props;
 
@@ -35,10 +36,11 @@ class MovieDetailsPage extends Component {
     }
     history.push(routes.home);
   };
+
   render() {
     const { backdrop_path, title, overview, release_date, genres } = this.state;
-
     const imgUrl = `https://image.tmdb.org/t/p/w500/${backdrop_path}`;
+
     return (
       <div className={s.container}>
         <button className="Button" type="button" onClick={this.handleGoBack}>

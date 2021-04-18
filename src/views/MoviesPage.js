@@ -9,6 +9,13 @@ class MoviesPage extends Component {
     query: '',
   };
 
+  componentDidMount() {
+    const { search, pathname } = this.props.location;
+    if (pathname && search) {
+      this.setState({ query: search.slice(7) });
+    }
+  }
+
   async componentDidUpdate(_, prevState) {
     const { query: currentQuery } = this.state;
     const { query: prevQuery } = prevState;
@@ -26,16 +33,21 @@ class MoviesPage extends Component {
       return;
     }
   }
-
-  handleSubmitForm = currentQuery => {
-    this.setState({ query: currentQuery });
+  onChangeQuery = query => {
+    this.setState({
+      query: query,
+    });
+    this.props.history.push({
+      ...this.props.location,
+      search: `?query=${query}`,
+    });
   };
 
   render() {
     return (
       <>
         <h1>Поиск фильмов</h1>
-        <Form onSubmit={this.handleSubmitForm} />
+        <Form onSubmit={this.onChangeQuery} />
 
         <MovieList movies={this.state.movies} />
       </>
