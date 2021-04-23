@@ -70,7 +70,10 @@ class MovieDetailsPage extends Component {
           <li>
             {' '}
             <NavLink
-              to={{ pathname: `${this.props.match.url}/cast` }}
+              to={{
+                pathname: `${this.props.match.url}/cast`,
+                state: { ...this.props.location.state },
+              }}
               className="links"
               activeClassName="active-links"
             >
@@ -79,7 +82,10 @@ class MovieDetailsPage extends Component {
           </li>
           <li>
             <NavLink
-              to={{ pathname: `${this.props.match.url}/reviews` }}
+              to={{
+                pathname: `${this.props.match.url}/reviews`,
+                state: { ...this.props.location.state },
+              }}
               className="links"
               activeClassName="active-links"
             >
